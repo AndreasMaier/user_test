@@ -1,7 +1,11 @@
 UserTest::Application.routes.draw do
 
-  devise_for :users
-  root :to => 'home#index'
+  devise_for :users, path_names: {sign_in: 'login', sign_out: 'logout'}
+  root :to => 'home#show'
+
+  resource :home, only: [ :index, :show ]
+  resources :planets, only: [ :index, :show ]
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

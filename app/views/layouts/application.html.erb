@@ -1,22 +1,82 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>UserTest</title>
-  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <head>
+    <title>UserTest</title>
+    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="navbar-inner">
+        <div class="container">
+          <%= link_to "User_Test", '#', id: "logo" %>
+          <nav>
+            <% if user_signed_in? %>
+              <div class="nav-collapse collapse">
+                <ul class="nav">
+                  <%= link_to 'Planets', planets_path %> |
+                </ul>
+              </div>
+            <% end %>
+            <ul class="nav pull-right">
+              <% if user_signed_in? %>
+                Logged in as <strong><%= current_user.email %></strong>.
+                <%= link_to 'Edit profile', edit_user_registration_path %> |
+                <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+              <% else %>
+                <%= link_to "Sign up", new_user_registration_path %> |
+                <%= link_to "Login", new_user_session_path %>
+              <% end %>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
 
-  <% if user_signed_in? %>
-    Logged in as <strong><%= current_user.email %></strong>.
-    <%= link_to 'Edit profile', edit_user_registration_path %> |
-    <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-  <% else %>
-    <%= link_to "Sign up", new_user_registration_path %> |
-    <%= link_to "Login", new_user_session_path %>
-  <% end %>
-</body>
+    <% if user_signed_in? %>
+      <div class="container-fluid">
+    <% else %>
+      <div class="container">
+    <% end %>
+
+      <div class="row-fluid">
+
+        <% if notice || alert %>
+          <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
+        <% end %>
+
+        <% if user_signed_in? %>
+          <div class="span2">
+            <div class="well sidebar-nav">
+                <ul class="nav nav-list">
+                  <li class="nav-header">
+                    Current_planet:<br>
+                    <%= current_user.current_planet.name %>
+                  </li>
+                  <li>
+                    Population: 2.5M
+                  </li>
+                  <li>
+                    Metal: 2500
+                  </li>
+                  <li>
+                    Uranium: 400
+                  </li>
+                  <li>
+                    Arplax: 840
+                  </li>
+                </ul>
+            </div>
+          </div>
+        <% end %>
+
+        <div class="span9">
+          <%= yield %>
+          <%= debug(params) if Rails.env.development? %>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

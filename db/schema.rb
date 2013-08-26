@@ -11,7 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130824234837) do
+ActiveRecord::Schema.define(version: 20130825072607) do
+
+  create_table "planet_resources", force: true do |t|
+    t.integer  "planet_id"
+    t.decimal  "population",      default: 0.0
+    t.decimal  "metal",           default: 0.0
+    t.decimal  "uranium",         default: 0.0
+    t.decimal  "arplax",          default: 0.0
+    t.decimal  "population_rate", default: 1.1
+    t.decimal  "metal_rate",      default: 10.0
+    t.decimal  "uranium_rate",    default: 0.0
+    t.decimal  "arplax_rate",     default: 0.0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "planets", force: true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
