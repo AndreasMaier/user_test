@@ -1,6 +1,15 @@
 class Planet < ActiveRecord::Base
   belongs_to :user
-  has_one :planet_resources
+
+  before_save :create_resources
+  has_one :planet_resources, dependent: :destroy
 
   validates :name, presence: true
+
+  private
+
+  def create_resources
+    puts 'creating'
+    self.planet_resources = PlanetResources.create
+  end
 end

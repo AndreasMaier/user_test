@@ -15,14 +15,14 @@ ActiveRecord::Schema.define(version: 20130825072607) do
 
   create_table "planet_resources", force: true do |t|
     t.integer  "planet_id"
-    t.decimal  "population",      default: 0.0
-    t.decimal  "metal",           default: 0.0
-    t.decimal  "uranium",         default: 0.0
-    t.decimal  "arplax",          default: 0.0
-    t.decimal  "population_rate", default: 1.1
-    t.decimal  "metal_rate",      default: 10.0
-    t.decimal  "uranium_rate",    default: 0.0
-    t.decimal  "arplax_rate",     default: 0.0
+    t.decimal  "population",      default: 0.0,  null: false
+    t.decimal  "metal",           default: 0.0,  null: false
+    t.decimal  "uranium",         default: 0.0,  null: false
+    t.decimal  "arplax",          default: 0.0,  null: false
+    t.decimal  "population_rate", default: 1.1,  null: false
+    t.decimal  "metal_rate",      default: 10.0, null: false
+    t.decimal  "uranium_rate",    default: 0.0,  null: false
+    t.decimal  "arplax_rate",     default: 0.0,  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20130825072607) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
