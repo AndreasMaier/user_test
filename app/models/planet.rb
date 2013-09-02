@@ -9,7 +9,6 @@ class Planet < ActiveRecord::Base
   private
 
   def create_resources
-    puts 'creating'
     self.planet_resources = PlanetResources.create
   end
 end

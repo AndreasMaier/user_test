@@ -8,7 +8,7 @@ class CreatePlanetResources < ActiveRecord::Migration
       t.decimal :arplax,    :null => false, default: 0.0
 
       t.decimal :population_rate,:null => false, default: 1.1
-      t.decimal :metal_rate,     :null => false, default: 10.0
+      t.decimal :metal_rate,     :null => false, default: 100.0
       t.decimal :uranium_rate,   :null => false, default: 0.0
       t.decimal :arplax_rate,    :null => false, default: 0.0
 

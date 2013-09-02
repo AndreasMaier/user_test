@@ -1,0 +1,6 @@
+describe PlanetResource do
+
+
+
+end
+

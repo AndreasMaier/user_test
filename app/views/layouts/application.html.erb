@@ -48,6 +48,7 @@
         <% end %>
 
         <% if user_signed_in? %>
+        <%   current_resources = current_user.current_planet_resources %>
           <div class="span2">
             <div class="well sidebar-nav">
                 <ul class="nav nav-list">
@@ -56,16 +57,16 @@
                     <%= current_user.current_planet.name %>
                   </li>
                   <li>
-                    Population: 2.5M
+                    Population: <%= current_resources.population.floor %>
                   </li>
                   <li>
-                    Metal: 2500
+                    Metal: <%= current_resources.metal.floor %>
                   </li>
                   <li>
-                    Uranium: 400
+                    Uranium: <%= current_resources.uranium.floor %>
                   </li>
                   <li>
-                    Arplax: 840
+                    Arplax: <%= current_resources.arplax.floor %>
                   </li>
                 </ul>
             </div>

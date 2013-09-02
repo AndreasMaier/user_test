@@ -15,14 +15,14 @@ ActiveRecord::Schema.define(version: 20130825072607) do
 
   create_table "planet_resources", force: true do |t|
     t.integer  "planet_id"
-    t.decimal  "population",      default: 0.0,  null: false
-    t.decimal  "metal",           default: 0.0,  null: false
-    t.decimal  "uranium",         default: 0.0,  null: false
-    t.decimal  "arplax",          default: 0.0,  null: false
-    t.decimal  "population_rate", default: 1.1,  null: false
-    t.decimal  "metal_rate",      default: 10.0, null: false
-    t.decimal  "uranium_rate",    default: 0.0,  null: false
-    t.decimal  "arplax_rate",     default: 0.0,  null: false
+    t.decimal  "population",      default: 0.0,   null: false
+    t.decimal  "metal",           default: 0.0,   null: false
+    t.decimal  "uranium",         default: 0.0,   null: false
+    t.decimal  "arplax",          default: 0.0,   null: false
+    t.decimal  "population_rate", default: 1.1,   null: false
+    t.decimal  "metal_rate",      default: 100.0, null: false
+    t.decimal  "uranium_rate",    default: 0.0,   null: false
+    t.decimal  "arplax_rate",     default: 0.0,   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

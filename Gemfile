@@ -24,6 +24,11 @@ group :development do
   gem 'rspec-rails'
 end
 
+group :test do
+  gem 'factory_girl'
+  gem 'timecop'
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
