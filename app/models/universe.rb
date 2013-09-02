@@ -1,3 +1,5 @@
 class Universe < ActiveRecord::Base
-  has_many :galaxies
+  has_many :clusters
+
+  validates :name, presence: true
 end

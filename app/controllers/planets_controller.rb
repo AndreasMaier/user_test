@@ -2,7 +2,7 @@ class PlanetsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @planets = Planet.paginate(page: params[:page], :per_page => 10)
+    @planets = Planet.paginate(page: params[:page], :per_page => 20)
   end
 
   def show

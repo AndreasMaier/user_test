@@ -1,75 +1,53 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>UserTest</title>
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <header class="navbar navbar-fixed-top navbar-inverse">
+    <div class="navbar navbar-fixed-tope navbar-inverse">
       <div class="navbar-inner">
         <div class="container">
-          <%= link_to "User_Test", '#', id: "logo" %>
-          <nav>
-            <% if user_signed_in? %>
-              <div class="nav-collapse collapse">
-                <ul class="nav">
-                  <%= link_to 'Planets', planets_path %> |
-                </ul>
-              </div>
-            <% end %>
-            <ul class="nav pull-right">
+          <!--<div class="nav=collapse collapse">-->
+            <ul class="nav">
               <% if user_signed_in? %>
-                Logged in as <strong><%= current_user.email %></strong>.
-                <%= link_to 'Edit profile', edit_user_registration_path %> |
-                <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+                <li class="inverse-li">Logged in as <strong><%= current_user.email %></strong></li>
+                <li class><%= link_to 'Edit profile', edit_user_registration_path %></li>
+                <li class><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
               <% else %>
-                <%= link_to "Sign up", new_user_registration_path %> |
+                <%= link_to "Sign up", new_user_registration_path %>
                 <%= link_to "Login", new_user_session_path %>
               <% end %>
             </ul>
-          </nav>
+            <% if user_signed_in? %>
+            <%   current_resources = current_user.current_planet_resources %>
+              <div class="pull-right">
+                  <ul class="nav">
+                    <li><div class="nav-resources">Population: <%= current_resources.population.floor %></div></li>
+                    <li><div class="nav-resources">Metal: <%= current_resources.metal.floor %></div></li>
+                    <li><div class="nav-resources">Uranium: <%= current_resources.uranium.floor %></div></li>
+                    <li><div class="nav-resources">Arplax: <%= current_resources.arplax.floor %></div></li>
+                  </ul>
+              </div>
+            <% end %>
+          <!--</div>-->
         </div>
       </div>
-    </header>
+    </div>
 
-    <% if user_signed_in? %>
-      <div class="container-fluid">
-    <% else %>
-      <div class="container">
-    <% end %>
-
-      <div class="row-fluid">
-
+    <div class="container">
+      <div class="row">
         <% if notice || alert %>
           <p class="notice"><%= notice %></p>
           <p class="alert"><%= alert %></p>
         <% end %>
 
         <% if user_signed_in? %>
-        <%   current_resources = current_user.current_planet_resources %>
-          <div class="span2">
-            <div class="well sidebar-nav">
-                <ul class="nav nav-list">
-                  <li class="nav-header">
-                    Current_planet:<br>
-                    <%= current_user.current_planet.name %>
-                  </li>
-                  <li>
-                    Population: <%= current_resources.population.floor %>
-                  </li>
-                  <li>
-                    Metal: <%= current_resources.metal.floor %>
-                  </li>
-                  <li>
-                    Uranium: <%= current_resources.uranium.floor %>
-                  </li>
-                  <li>
-                    Arplax: <%= current_resources.arplax.floor %>
-                  </li>
-                </ul>
-            </div>
+          <div class="span3">
+            <ul class="nav nav-list">
+              <li><%= link_to "Home", root_path %></li>
+            </ul>
           </div>
         <% end %>
 

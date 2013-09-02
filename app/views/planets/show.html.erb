@@ -1,3 +1,5 @@
-<div class="span">
-  <%= @planet.name %>
+<div class="hero-unit">
+  <h1>Planet <%= @planet.name %></h1>
+
+  <p class="center">Solar System: <%= link_to @planet.solar_system.name.capitalize, @planet.solar_system %></p>
 </div>

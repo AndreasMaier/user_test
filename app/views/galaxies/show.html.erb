@@ -1,0 +1,26 @@
+<div class="hero-unit">
+  <h1>Galaxy <%= @galaxy.name %></h1>
+
+  <p class="center">Cluster: <%= link_to @galaxy.cluster.name.capitalize, @galaxy.cluster %></p>
+</div>
+
+<%= will_paginate @systems %>
+
+<table class="table table-striped table-bordered table-condensed">
+  <thead>
+  <tr>
+    <th colspan="1" width="20">ID</th>
+    <th colspan="5">Solar System</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @systems.each do |system| %>
+    <tr>
+      <td><%= system.id %></td>
+      <td><%= link_to system.name.capitalize, system %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @systems %>

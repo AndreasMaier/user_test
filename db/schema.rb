@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130825072607) do
+ActiveRecord::Schema.define(version: 20130902004128) do
+
+  create_table "clusters", force: true do |t|
+    t.integer  "universe_id", null: false
+    t.string   "name",        null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "galaxies", force: true do |t|
+    t.integer  "cluster_id", null: false
+    t.string   "name",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "planet_resources", force: true do |t|
     t.integer  "planet_id"
@@ -28,8 +42,22 @@ ActiveRecord::Schema.define(version: 20130825072607) do
   end
 
   create_table "planets", force: true do |t|
-    t.string   "name"
+    t.string   "name",            null: false
     t.integer  "user_id"
+    t.integer  "solar_system_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "solar_systems", force: true do |t|
+    t.integer  "galaxy_id",  null: false
+    t.string   "name",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "universes", force: true do |t|
+    t.string   "name",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

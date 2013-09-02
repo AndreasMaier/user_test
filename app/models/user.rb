@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :planets
+  has_many :planets, dependent: :nullify
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  after_create :colonize_planet
+  after_create :colonize_first_planet
 
   def current_planet
     raise "Player '#{email}' has no planets!" unless planets
@@ -27,9 +27,8 @@ class User < ActiveRecord::Base
 
   private
 
-  def colonize_planet
-    planet = Planet.create(name: "planet_#{Planet.count}")
-    puts "colonizing planet '#{planet.id}' for user #{id}"
+  def colonize_first_planet
+    planet = Planet.select_free_planet(self)
     planets << planet
   end
 end

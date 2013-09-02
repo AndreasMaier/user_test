@@ -1,5 +1,9 @@
 require 'spec_helper'
 
 describe SolarSystem do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "when not providing a name" do
+    subject { SolarSystem.new }
+
+    it { should_not be_valid }
+  end
 end

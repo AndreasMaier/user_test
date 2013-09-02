@@ -4,7 +4,12 @@ UserTest::Application.routes.draw do
   root :to => 'home#show'
 
   resource :home, only: [ :index, :show ]
-  resources :planets, only: [ :index, :show ]
+
+  resources :clusters, only: [ :index, :show ]
+  resources :galaxies, only: [ :show ]
+  resources :solar_systems, only: [ :show ]
+  resources :planets, only: [ :show ]
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.
